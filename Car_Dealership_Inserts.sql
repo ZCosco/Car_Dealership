@@ -127,13 +127,13 @@ select * from customer
 
 DROP PROCEDURE IF EXISTS addNewPhoneNumber(integer, VARCHAR);
 
-CREATE OR REPLACE PROCEDURE addNewPhoneNumber(customer_id_param integer, new_phone_number VARCHAR(50))
+CREATE OR REPLACE PROCEDURE addNewPhoneNumber(selected_customer integer, new_phone_number VARCHAR(50))
 LANGUAGE plpgsql
 AS $$
 BEGIN
     UPDATE customer 
     SET phone_num = new_phone_number
-    WHERE customer.customer_id = customer_id_param;
+    WHERE customer.customer_id = selected_customer;
 END;
 $$;
 
