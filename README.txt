@@ -12,3 +12,6 @@ Host/Server: bubble.db.elephantsql.com
 Default-Database/Username: kpulqwej
 
 Password: wJmUD-O1xC-2nbUJl353sW82S9MD-v2T
+
+
+EDIT: Added stored functions. 

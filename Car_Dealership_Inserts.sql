@@ -121,3 +121,34 @@ select * from car
 select * from salesperson
 
 select * from customer 
+
+
+-- Stored Functions 
+
+DROP PROCEDURE IF EXISTS addNewPhoneNumber(integer, VARCHAR);
+
+CREATE OR REPLACE PROCEDURE addNewPhoneNumber(customer_id_param integer, new_phone_number VARCHAR(50))
+LANGUAGE plpgsql
+AS $$
+BEGIN
+    UPDATE customer 
+    SET phone_num = new_phone_number
+    WHERE customer.customer_id = customer_id_param;
+END;
+$$;
+
+CALL addNewPhoneNumber(1, '(333)333-3333');
+
+CREATE or REPLACE FUNCTION add_salesperson(salesperson_id_C INTEGER, first_name_C VARCHAR(50), last_name_C VARCHAR(50))
+RETURNS VOID
+as $MAIN$
+BEGIN
+	INSERT INTO salesperson(salesperson_id, first_name, last_name)
+	VALUES(salesperson_id_C, first_name_C, last_name_C);
+END;
+$MAIN$
+LANGUAGE plpgsql;
+
+
+
+SELECT add_salesperson(4, 'Sir', 'Mix-a-Lot');
